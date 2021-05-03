@@ -1,0 +1,21 @@
+FROM node:14-alpine
+
+WORKDIR /usr/src/app
+
+RUN apk add --update alpine-sdk
+RUN apk add --no-cache python3 py3-pip
+RUN apk add --no-cache make gcc g++ linux-headers udev
+RUN npm install serialport --build-from-source=serialport
+
+COPY package.json ./
+
+RUN yarn
+RUN yarn global add pm2
+RUN yarn add webpack webpack-cli -D
+
+COPY . .
+
+RUN mkdir /usr/src/app/sketch
+
+EXPOSE 4000
+CMD ["yarn","start"]

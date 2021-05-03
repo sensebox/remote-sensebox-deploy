@@ -1,5 +1,5 @@
-mv ./dockerfiles/Dockerfile-backend ./backend/Dockerfile
-mv ./dockerfiles/Dockerfile-frontend ./frontend/Dockerfile
+cp ./dockerfiles/Dockerfile-backend ./backend/Dockerfile
+cp ./dockerfiles/Dockerfile-frontend ./frontend/Dockerfile
 
-mv ./resources/store.js ./frontend/src/store.js
-mv ./resources/frontend.env ./frontend/.env
+cp ./resources/store.js ./frontend/src/store.js
+cp ./resources/frontend.env ./frontend/.env
