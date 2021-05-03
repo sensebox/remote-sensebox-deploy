@@ -3,9 +3,11 @@ services:
   app:
     build:
       context: ./frontend
+    restart: always
   api:
     build:
       context: ./backend
+    restart: always
     environment:
       - JSON_SERVER=http://jsonserver
     devices:
@@ -15,10 +17,12 @@ services:
   jsonserver:
     build:
       context: ./docker-json-server
+    restart: always
     volumes:
       - ./backend/db.json:/data/db.json
   restreamer:
     image: datarhei/restreamer-armv7l:latest
+    restart: always
     environment:
       - RS_USERNAME=admin
       - RS_PASSWORD=datarhei
@@ -44,6 +48,7 @@ services:
   localtunnel:
     build:
       context: ./localtunnel
+    restart: always
     depends_on:
       - nginx
     command:
@@ -51,6 +56,7 @@ services:
   localtunnel-restreamer:
     build:
       context: ./localtunnel
+    restart: always
     depends_on:
       - nginx
     command:

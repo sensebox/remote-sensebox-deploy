@@ -4,6 +4,3 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/Janni2006/remote-sensebox-react-backend
-[submodule "docker-json-server"]
-	path = docker-json-server
-	url = https://github.com/clue/docker-json-server.git
