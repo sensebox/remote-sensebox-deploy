@@ -25,7 +25,7 @@ services:
     restart: always
     environment:
       - RS_USERNAME=admin
-      - RS_PASSWORD=datarhei
+      - RS_PASSWORD=iAmSuperSecure
       - RS_MODE=RASPICAM
     volumes:
       - /mnt/restreamer/db:/restreamer/db
