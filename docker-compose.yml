@@ -1,0 +1,57 @@
+version: "3"
+services:
+  app:
+    build:
+      context: ./frontend
+  api:
+    build:
+      context: ./backend
+    environment:
+      - JSON_SERVER=http://jsonserver
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    depends_on:
+      - "jsonserver"
+  jsonserver:
+    build:
+      context: ./docker-json-server
+    volumes:
+      - ./backend/db.json:/data/db.json
+  restreamer:
+    image: datarhei/restreamer-armv7l:latest
+    environment:
+      - RS_USERNAME=admin
+      - RS_PASSWORD=datarhei
+      - RS_MODE=RASPICAM
+    volumes:
+      - /mnt/restreamer/db:/restreamer/db
+      - /opt/vc:/opt/vc
+    privileged: true
+  nginx:
+    image: nginx:1.16.0-alpine
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+      - "8080:8080"
+    links:
+      - restreamer
+    depends_on:
+      - "app"
+      - "api"
+      - "restreamer"
+  localtunnel:
+    build:
+      context: ./localtunnel
+    depends_on:
+      - nginx
+    command:
+      --local-host nginx --subdomain remote-sensebox --port 80
+  localtunnel-restreamer:
+    build:
+      context: ./localtunnel
+    depends_on:
+      - nginx
+    command:
+      --local-host nginx --subdomain remote-sensebox-stream --port 8080
