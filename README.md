@@ -15,6 +15,3 @@
 ### Setup Restreamer
 - Open https://remote-sensebox-stream.loca.lt/ and login
 - Create the stream as descibed here: https://datarhei.github.io/restreamer/docs/guides-raspicam.html
-
-### Setup Frontend
-- Start the Frontend on netlify with the corresponding environment variables
