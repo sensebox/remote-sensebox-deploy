@@ -1,12 +1,10 @@
-FROM node:14-alpine
+FROM node:14-buster
 
 WORKDIR /usr/src/app
 
-RUN apk add --update alpine-sdk
-RUN apk add --no-cache python3 py3-pip
-RUN apk add --no-cache make gcc g++ linux-headers udev
+RUN apt-get update
+RUN apt-get install libfl-dev
 
-RUN apk add libc6-compat --no-cache
 RUN curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/local/bin sh
 RUN arduino-cli --additional-urls https://raw.githubusercontent.com/sensebox/senseBoxMCU-core/master/package_sensebox_index.json core update-index
 RUN arduino-cli core install arduino:samd
