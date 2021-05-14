@@ -9,6 +9,7 @@ RUN curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/inst
 RUN arduino-cli --additional-urls https://raw.githubusercontent.com/sensebox/senseBoxMCU-core/master/package_sensebox_index.json core update-index
 RUN arduino-cli core install arduino:samd
 RUN arduino-cli --additional-urls https://raw.githubusercontent.com/sensebox/senseBoxMCU-core/master/package_sensebox_index.json core install sensebox:samd
+RUN arduino-cli lib install SD@1.2.4
 
 RUN npm install serialport --build-from-source=serialport
 
