@@ -3,9 +3,9 @@ FROM node:14-buster
 WORKDIR /usr/src/app
 
 RUN apt-get update
-RUN apt-get install libfl-dev
+RUN apt-get install -y libfl-dev
 
-RUN curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/local/bin sh
+RUN curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/usr/local/bin sh -s 0.18.3
 RUN arduino-cli --additional-urls https://raw.githubusercontent.com/sensebox/senseBoxMCU-core/master/package_sensebox_index.json core update-index
 RUN arduino-cli core install arduino:samd
 RUN arduino-cli --additional-urls https://raw.githubusercontent.com/sensebox/senseBoxMCU-core/master/package_sensebox_index.json core install sensebox:samd
