@@ -4,6 +4,7 @@
 - 💾 Install Raspbian OS on your Raspberry Pi SD Card
 - 🐳 You may need to install `git` and `docker` / `docker-compose`
 - 📽 Enable Camera trough `sudo raspi-config`
+- 🔌 Connect senseBox MCU with a USB port
 
 ### Setup Repository
 - 👯 Clone this repo
