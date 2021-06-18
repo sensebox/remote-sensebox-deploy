@@ -4,22 +4,29 @@ services:
     build:
       context: ./frontend
     restart: always
-  api:
-    build:
-      context: ./backend
-    restart: always
-    environment:
-      - JSON_SERVER=http://jsonserver
-    devices:
-      - /dev/ttyACM0:/dev/ttyACM0
-    depends_on:
-      - "jsonserver"
+  # api:
+  #   build:
+  #     context: ./backend
+  #   restart: always
+  #   environment:
+  #     - JSON_SERVER=http://jsonserver
+  #   devices:
+  #     - /dev/ttyACM0:/dev/ttyACM0
+  #     - /dev/gpiomem:/dev/gpiomem
+  #   volumes:
+  #     - /sys:/sys
+  #   depends_on:
+  #     - "jsonserver"
+  #   ports:
+  #     - "3000:3000"
   jsonserver:
     build:
       context: ./docker-json-server
     restart: always
     volumes:
       - ./backend/db.json:/data/db.json
+    ports:
+      - "3080:80"
   restreamer:
     image: datarhei/restreamer-armv7l:latest
     restart: always
@@ -43,8 +50,10 @@ services:
       - restreamer
     depends_on:
       - "app"
-      - "api"
+      # - "api"
       - "restreamer"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   localtunnel:
     build:
       context: ./localtunnel
