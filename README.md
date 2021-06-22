@@ -10,6 +10,8 @@
 
 ### Setup Pitunnel
 - https://www.pitunnel.com/
+  - ssh (port 22)
+  - http (port 80)
 
 ### Setup Repository
 - 👯 Clone this repo
