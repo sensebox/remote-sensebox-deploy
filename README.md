@@ -15,7 +15,7 @@
 
 ### Setup Repository
 - 👯 Clone this repo
-- 📥 Add submodules (if needed)
+- 📥 `git submodule update --init --recursive`
 - 👩‍🔧 Run `bash init.sh`
 
 ### Setup Restreamer
