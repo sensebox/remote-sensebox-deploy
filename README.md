@@ -1,7 +1,9 @@
 # 🔭 Remote senseBox deployment
 
 ### Setup Raspberry Pi
-- 💾 Install Raspbian OS on your Raspberry Pi SD Card
+- 💾 Install Raspberry Pi OS on your Raspberry Pi SD Card
+- Setup Raspberry Pi Headless: https://www.raspberrypi.org/documentation/configuration/wireless/headless.md
+- Create a `ssh` file in `boot` with no content
 - 🐳 You may need to install `git` and `docker` / `docker-compose`
 - 📽 Enable Camera trough `sudo raspi-config`
 - 🔌 Connect senseBox MCU with a USB port
